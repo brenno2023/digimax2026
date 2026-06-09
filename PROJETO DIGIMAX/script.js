@@ -2167,6 +2167,25 @@ function alternarDaltonismo() {
     document.body.classList.toggle("daltonismo");
 }
 
+async function executarTrigger() {
+
+    try {
+
+        const resposta = await fetch(
+            "http://localhost:8080/admin-bd/executar-trigger"
+        );
+
+        const mensagem = await resposta.text();
+
+        alert(mensagem);
+
+    } catch (erro) {
+
+        alert("Erro ao executar a trigger.");
+        console.error(erro);
+
+    }
+}
 
 
 

@@ -1,6 +1,9 @@
 create database banco_inter_4sem_digimax;
 go
 
+use master
+go
+
 use banco_inter_4sem_digimax;
 go
 
@@ -131,121 +134,75 @@ go
 
 
 
--- INSERTS:
---============================================================
--- PESSOAS 1 A 10
--- CLIENTES
---============================================================
+-- INSERTS
 
-insert into pessoa (nome, email, senha, tipo, status) values
+--============================================================
+-- PESSOAS
+--============================================================
+insert into pessoa (nome,email,senha,tipo,status) values
 ('João Silva','joao@gmail.com','123456','cliente',1),
 ('Maria Oliveira','maria@gmail.com','234567','cliente',1),
 ('Carlos Souza','carlos@gmail.com','345678','cliente',1),
 ('Ana Paula','ana@gmail.com','456789','cliente',1),
 ('Pedro Henrique','pedro@gmail.com','567890','cliente',1),
-('Fernanda Lima','fernanda@gmail.com','678901','cliente',1),
 ('Ricardo Alves','ricardo@gmail.com','789012','cliente',1),
-('Juliana Rocha','juliana@gmail.com','890123','cliente',1),
-('Gabriel Martins','gabriel@gmail.com','901234','cliente',1),
-('Patricia Gomes','patricia@gmail.com','112233','cliente',1);
+('Marcos Vinicius','marcos@gmail.com','11112222','funcionario',1),
+('Lucas Ferreira','lucas@gmail.com','22223333','funcionario',1),
+('Bruna Carvalho','bruna@gmail.com','33334444','funcionario',1),
+('Roberto Almeida','roberto@gmail.com','66667777','admin',1),
+('Camila Mendes','camila@gmail.com','77778888','admin',1);
 go
 
 
+--============================================================
+-- CLIENTES
+--============================================================
 insert into cliente
-(
-	id,
-	cpf_cnpj,
-	telefone,
-	cep,
-	rua,
-	numero,
-	complemento,
-	bairro,
-	cidade,
-	estado
-)
+(id,cpf_cnpj,telefone,cep,rua,numero,complemento,bairro,cidade,estado)
 values
 (1,'11111111111','17990000001','15000000','Rua A','10','Casa','Centro','São José do Rio Preto','SP'),
 (2,'22222222222','17990000002','15000001','Rua B','20','Casa','Centro','São José do Rio Preto','SP'),
 (3,'33333333333','17990000003','15000002','Rua C','30','Casa','Boa Vista','São José do Rio Preto','SP'),
 (4,'44444444444','17990000004','15000003','Rua D','40','Casa','Jardim Primavera','São José do Rio Preto','SP'),
 (5,'55555555555','17990000005','15000004','Rua E','50','Casa','Solo Sagrado','São José do Rio Preto','SP'),
-(6,'66666666666','17990000006','15000005','Rua F','60','Casa','Centro','São José do Rio Preto','SP'),
-(7,'77777777777','17990000007','15000006','Rua G','70','Casa','Eldorado','São José do Rio Preto','SP'),
-(8,'88888888888','17990000008','15000007','Rua H','80','Casa','Jaguaré','São José do Rio Preto','SP'),
-(9,'99999999999','17990000009','15000008','Rua I','90','Casa','Centro','São José do Rio Preto','SP'),
-(10,'10101010101','17990000010','15000009','Rua J','100','Casa','Vila Toninho','São José do Rio Preto','SP');
+(6,'66666666666','17990000006','15000005','Rua F','60','Casa','Centro','São José do Rio Preto','SP');
 go
 
 
 
+--============================================================
+-- CARGOS
+--============================================================
+insert into cargo(nome,descricao)
+values
+('Designer','Criação de artes'),
+('Atendente','Atendimento ao cliente'),
+('Impressor','Produção gráfica');
+go
+
+
 
 --============================================================
--- PESSOAS 11 A 15
 -- FUNCIONÁRIOS
 --============================================================
-
-insert into pessoa (nome, email, senha, tipo, status) values
-('Marcos Vinicius','marcos@gmail.com','11112222','funcionario',1),
-('Lucas Ferreira','lucas@gmail.com','22223333','funcionario',1),
-('Bruna Carvalho','bruna@gmail.com','33334444','funcionario',1),
-('Thiago Santos','thiago@gmail.com','44445555','funcionario',1),
-('Amanda Ribeiro','amanda@gmail.com','55556666','funcionario',1);
-go
-
 insert into funcionario
-(
-	id,
-	usuario,
-	cargo_id
-)
+(id,usuario,cargo_id)
 values
-(11,'marcosv',1),
-(12,'lucasf',2),
-(13,'brunac',1),
-(14,'thiagos',3),
-(15,'amandar',2);
+(7,'marcosv',1),
+(8,'lucasf',2),
+(9,'brunac',3);
 go
-
-
 
 
 --============================================================
--- PESSOAS 16 E 17
 -- ADMINISTRADORES
 --============================================================
-
-insert into pessoa (nome, email, senha, tipo, status) values
-('Roberto Almeida','roberto@gmail.com','66667777','admin',1),
-('Camila Mendes','camila@gmail.com','77778888','admin',1);
-go
-
 insert into administrador
-(
-	id,
-	usuario
-)
+(id,usuario)
 values
-(16,'admin01'),
-(17,'admin02');
+(10,'admin01'),
+(11,'admin02');
 go
-
-
-
-
---============================================================
--- CARGOS DO SISTEMA DIGIMAX
---============================================================
-
-insert into cargo (nome, descricao) values ('Designer', 'Responsável pela criação de artes e materiais gráficos.');
-go
-
-insert into cargo (nome, descricao) values ('Atendente', 'Responsável pelo atendimento aos clientes e organização dos pedidos.');
-go
-
-insert into cargo (nome, descricao) values ('Impressor', 'Responsável pela impressão, acabamento e produção dos materiais.');
-go
-
 
 
 --============================================================
@@ -268,6 +225,17 @@ insert into servico (nome, descricao, preco_base, tempo_estimado) values
 go
 
 
+
+--============================================================
+-- ORÇAMENTOS 
+--============================================================
+insert into orcamento (cliente_id, funcionario_id, servico_id, descricao, valor_estimado, status) values
+(1, 7, 1, 'Pedido de 500 cartões de visita coloridos', 80.00, 'aprovado'),
+(2, 8, 2, 'Produção de 200 adesivos personalizados para vitrine da loja', 150.00, 'pendente'),
+(3, 9, 3, 'Impressão de 5000 panfletos para divulgação de evento', 120.00, 'concluido');
+go
+
+
 --============================================================
 -- FEEDBACKS DE CLIENTES DA DIGIMAX
 --============================================================
@@ -276,24 +244,15 @@ insert into feedback (cliente_id, comentario, nota) values
 (1, 'Atendimento excelente e entrega rápida. Recomendo a Digimax.', 5),
 (2, 'Fiquei muito satisfeito com a qualidade da impressão.', 5),
 (3, 'Serviço muito bom, mas o prazo poderia ser um pouco menor.', 4),
-(4, 'Equipe atenciosa e arte desenvolvida exatamente como solicitado.', 5),
-(5, 'Ótimo atendimento e preço justo.', 5),
-(6, 'Material ficou muito bonito e com ótima qualidade.', 4),
-(7, 'Gostei bastante do serviço prestado e voltarei a comprar.', 5),
-(8, 'Atendimento rápido e funcionários educados.', 5),
-(9, 'A arte ficou excelente e a impressão superou as expectativas.', 5),
-(10, 'Serviço bem executado e entrega dentro do prazo combinado.', 4);
+(4, 'Equipe atenciosa e arte desenvolvida exatamente como solicitado.', 5)
 go
-
-
-
 
 
 --============================================================
 -- CONSULTAS DAS TABELAS COM DADOS INICIAIS
 --============================================================
 
-select * from pessoa;
+select * from pessoa
 go
 
 select * from cliente;
@@ -407,96 +366,111 @@ go
 
 
 
-
-
 --============================================================
--- PROCEDURE: cadastrar um novo funcionário no sistema Digimax
+-- PROCEDURE: Cadastrar um novo funcionário no sistema digimax
 --
 -- Objetivo:
 -- Realizar o cadastro completo de um funcionário.
 --
 -- Observação:
--- Todo funcionário também é uma pessoa,
+-- todo funcionário também é uma pessoa,
 -- portanto os dados serão gravados nas tabelas
--- Pessoa e Funcionario.
+-- pessoa e funcionario.
 --============================================================
+
 
 create procedure sp_CadFuncionario_Digimax
 (
-	@nomeFunc varchar(100),
-	@emailFunc varchar(100),
-	@senhaFunc varchar(255),
-	@usuarioFunc varchar(50),
-	@cargoId int
+    @nomeFunc varchar(100),
+    @emailFunc varchar(100),
+    @senhaFunc varchar(255),
+    @usuarioFunc varchar(50),
+    @cargoId int
 )
 as
 begin
 
-	begin try
+    begin try
 
-		-- iniciar transação para garantir
-		-- a integridade dos dados
-		begin tran
+        begin tran
 
-			-- inserir os dados básicos do funcionário
-			-- na tabela Pessoa
-			insert into pessoa
-			(
-				nome,
-				email,
-				senha,
-				tipo,
-				status
-			)
-			values
-			(
-				@nomeFunc,
-				@emailFunc,
-				@senhaFunc,
-				'funcionario',
-				1
-			)
+        insert into pessoa
+        (
+            nome,
+            email,
+            senha,
+            tipo,
+            status
+        )
+        values
+        (
+            @nomeFunc,
+            @emailFunc,
+            @senhaFunc,
+            'funcionario',
+            1
+        )
 
-			-- declarar variável para armazenar
-			-- o id gerado automaticamente
-			declare @idFunc int
+        declare @idFunc int
 
-			-- recuperar o id gerado pelo banco
-			set @idFunc = @@IDENTITY
+        set @idFunc = scope_identity()
 
-			-- inserir os dados específicos do funcionário
-			insert into funcionario
-			(
-				id,
-				usuario,
-				cargo_id
-			)
-			values
-			(
-				@idFunc,
-				@usuarioFunc,
-				@cargoId
-			)
+        insert into funcionario
+        (
+            id,
+            usuario,
+            cargo_id
+        )
+        values
+        (
+            @idFunc,
+            @usuarioFunc,
+            @cargoId
+        )
 
-			-- confirmar as operações realizadas
-			commit
+        select
+            p.id,
+            p.nome,
+            p.email,
+            f.usuario,
+            f.cargo_id
+        from pessoa p
+        inner join funcionario f
+            on p.id = f.id
+        where p.id = @idFunc
 
-			print 'Funcionário cadastrado com sucesso'
+        commit tran
 
-	end try
+    end try
 
-	begin catch
+    begin catch
 
-		-- desfazer todas as operações em caso de erro
-		rollback
+        if @@trancount > 0
+            rollback tran
 
-		print 'Erro ao cadastrar Funcionário'
+        select
+            error_number() as NumeroErro,
+            error_message() as MensagemErro
 
-	end catch
+    end catch
 
 end
 go
 
+
+
+
+--============================================================
+-- testando a procedure
+--============================================================
+
+exec sp_CadFuncionario_Digimax
+    'miguel lourenco',
+    'miguel.lourenco@digimax.com',
+    '123456',
+    'miguelfunc',
+    1
+go
 
 
 
@@ -605,6 +579,23 @@ end
 go
 
 
+--============================================================
+-- TESTANDO A FUNCTION
+--============================================================
+
+select *
+from fc_RelatorioOrcamentos_Digimax
+(
+    'pendente',
+    0,
+    10
+)
+go
+
+
+
+
+
 
 
 
@@ -702,3 +693,7 @@ go
 
 select * from LOG_HistoricoNovoOrcamento
 go
+
+
+
+

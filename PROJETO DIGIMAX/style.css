@@ -165,18 +165,10 @@ body{
 }
 
 /* FORMULÁRIO DE CADASTRO - DUAS COLUNAS */
-#cadastro {
-    background: rgba(255, 255, 255, 0.95);
-    /* Fundo claro semi-transparente */
-    border-radius: 15px;
-    /* Bordas arredondadas */
-    padding: 40px;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
-    /* Sombra suave */
-    max-width: 750px;
-    /* Aumenta um pouco a largura máxima */
-    margin: 80px auto 40px auto;
-    /* Adiciona margem superior para compensar a navbar fixa */
+#formCadastro{
+    width:100%;
+    max-width:1400px;
+    margin:auto;
 }
 
 /* Título */
@@ -8694,4 +8686,21 @@ fieldset legend {
 
 body.daltonismo {
     filter: saturate(60%) contrast(115%);
+}
+
+#cadastro{
+    padding:40px;
+}
+
+#formCadastro{
+    width:100%;
+    max-width:1400px;
+    margin:0 auto;
+
+    background:#fff;
+    padding:40px;
+    border-radius:20px;
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.08);
 }
